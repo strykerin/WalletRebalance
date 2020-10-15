@@ -32,14 +32,14 @@
     "absolutePath": "/C/Users/Fabio Costa/GitHub_repos/fabio770/WalletRebalance/contracts/interfaces/yearn/Converter.sol",
     "exportedSymbols": {
       "Converter": [
-        1256
+        1261
       ]
     },
-    "id": 1257,
+    "id": 1262,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1248,
+        "id": 1253,
         "literals": [
           "solidity",
           "^",
@@ -56,9 +56,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 1256,
+        "id": 1261,
         "linearizedBaseContracts": [
-          1256
+          1261
         ],
         "name": "Converter",
         "nodeType": "ContractDefinition",
@@ -67,7 +67,7 @@
             "body": null,
             "documentation": null,
             "functionSelector": "def2489b",
-            "id": 1255,
+            "id": 1260,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -75,16 +75,16 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 1251,
+              "id": 1256,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1250,
+                  "id": 1255,
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 1255,
+                  "scope": 1260,
                   "src": "106:7:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -93,7 +93,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1249,
+                    "id": 1254,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "106:7:4",
@@ -110,16 +110,16 @@
               "src": "105:9:4"
             },
             "returnParameters": {
-              "id": 1254,
+              "id": 1259,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1253,
+                  "id": 1258,
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 1255,
+                  "scope": 1260,
                   "src": "133:7:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -128,7 +128,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1252,
+                    "id": 1257,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "133:7:4",
@@ -143,14 +143,14 @@
               ],
               "src": "132:9:4"
             },
-            "scope": 1256,
+            "scope": 1261,
             "src": "89:53:4",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 1257,
+        "scope": 1262,
         "src": "62:83:4"
       }
     ],
@@ -160,14 +160,14 @@
     "absolutePath": "/C/Users/Fabio Costa/GitHub_repos/fabio770/WalletRebalance/contracts/interfaces/yearn/Converter.sol",
     "exportedSymbols": {
       "Converter": [
-        1256
+        1261
       ]
     },
-    "id": 1257,
+    "id": 1262,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1248,
+        "id": 1253,
         "literals": [
           "solidity",
           "^",
@@ -184,9 +184,9 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 1256,
+        "id": 1261,
         "linearizedBaseContracts": [
-          1256
+          1261
         ],
         "name": "Converter",
         "nodeType": "ContractDefinition",
@@ -195,7 +195,7 @@
             "body": null,
             "documentation": null,
             "functionSelector": "def2489b",
-            "id": 1255,
+            "id": 1260,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -203,16 +203,16 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 1251,
+              "id": 1256,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1250,
+                  "id": 1255,
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 1255,
+                  "scope": 1260,
                   "src": "106:7:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -221,7 +221,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1249,
+                    "id": 1254,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "106:7:4",
@@ -238,16 +238,16 @@
               "src": "105:9:4"
             },
             "returnParameters": {
-              "id": 1254,
+              "id": 1259,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1253,
+                  "id": 1258,
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 1255,
+                  "scope": 1260,
                   "src": "133:7:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -256,7 +256,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1252,
+                    "id": 1257,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "133:7:4",
@@ -271,14 +271,14 @@
               ],
               "src": "132:9:4"
             },
-            "scope": 1256,
+            "scope": 1261,
             "src": "89:53:4",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 1257,
+        "scope": 1262,
         "src": "62:83:4"
       }
     ],
@@ -290,7 +290,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.0",
-  "updatedAt": "2020-10-12T18:13:24.192Z",
+  "updatedAt": "2020-10-12T21:26:34.809Z",
   "devdoc": {
     "methods": {}
   },

@@ -7,7 +7,6 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract TokenFarm is ChainlinkClient, Ownable {
     string public name = "Dapp Token Farm";
-    IERC20 public dappToken;
 
     address[] public stakers;
     // token > address
@@ -16,8 +15,13 @@ contract TokenFarm is ChainlinkClient, Ownable {
     mapping(address => address) public tokenPriceFeedMapping;
     address[] allowedTokens;
 
-    constructor(address _dappTokenAddress) public {
-        dappToken = IERC20(_dappTokenAddress);
+    address public dappToken;
+    // at Rinkeby testnet
+    address public constant uni = address(0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D);
+    // address public constant weth = address(0x2fcc4dba284dcf665091718e4d0dab53a416dfe7); // used for dapp <> weth <> yfi route
+
+    constructor(address _dappToken) public {
+        dappToken = _dappToken;
     }
 
     function addAllowedTokens(address token) public onlyOwner {
@@ -115,7 +119,7 @@ contract TokenFarm is ChainlinkClient, Ownable {
             stakersIndex++
         ) {
             address recipient = stakers[stakersIndex];
-            dappToken.transfer(recipient, getUserTotalValue(recipient));
+            IERC20(dappToken).transfer(recipient, getUserTotalValue(recipient));
         }
     }
 
@@ -133,6 +137,21 @@ contract TokenFarm is ChainlinkClient, Ownable {
         ) = priceFeed.latestRoundData();
         return uint256(price);
     }
+
+    // function swapDappTokenForDAI() public {
+    //     uint256 _balance = IERC20(dappToken).balanceOf(address(this));
+    //     if (_balance > 0) {
+    //         IERC20(dappToken).safeApprove(uni, 0);
+    //         IERC20(dappToken).safeApprove(uni, _balance);
+
+    //         address[] memory path = new address[](3);
+    //         path[0] = cream;
+    //         path[1] = weth;
+    //         path[2] = want;
+
+    //         Uni(uni).swapExactTokensForTokens(_cream, uint256(0), path, address(this), now.add(1800));
+    //     }
+    // }
 }
 
 //18446744073709555618
