@@ -4,10 +4,15 @@ import "@chainlink/contracts/src/v0.6/interfaces/AggregatorV3Interface.sol";
 import "@chainlink/contracts/src/v0.6/ChainlinkClient.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
+
+import "../interfaces/uniswap/Uni.sol";
 
 contract TokenFarm is ChainlinkClient, Ownable {
+    using SafeERC20 for IERC20;
+    using Address for address;
+
     string public name = "Dapp Token Farm";
-    IERC20 public dappToken;
 
     address[] public stakers;
     // token > address
@@ -16,8 +21,14 @@ contract TokenFarm is ChainlinkClient, Ownable {
     mapping(address => address) public tokenPriceFeedMapping;
     address[] allowedTokens;
 
-    constructor(address _dappTokenAddress) public {
-        dappToken = IERC20(_dappTokenAddress);
+    address public dappToken;
+    // at Rinkeby testnet
+    address public constant uni = address(0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D);
+    address public constant weth = address(0xc778417E063141139Fce010982780140Aa0cD5Ab); // used for dapp <> weth <> yfi route
+    address public constant want = address(0xc7AD46e0b8a400Bb3C915120d284AafbA8fc4735); // dai
+
+    constructor(address _dappToken) public {
+        dappToken = _dappToken;
     }
 
     function addAllowedTokens(address token) public onlyOwner {
@@ -115,7 +126,7 @@ contract TokenFarm is ChainlinkClient, Ownable {
             stakersIndex++
         ) {
             address recipient = stakers[stakersIndex];
-            dappToken.transfer(recipient, getUserTotalValue(recipient));
+            IERC20(dappToken).transfer(recipient, getUserTotalValue(recipient));
         }
     }
 
@@ -133,6 +144,19 @@ contract TokenFarm is ChainlinkClient, Ownable {
         ) = priceFeed.latestRoundData();
         return uint256(price);
     }
-}
 
-//18446744073709555618
+    function swapDappTokenForDAI() public {
+        uint256 _balanceDappToken = IERC20(dappToken).balanceOf(address(this));
+        if (_balanceDappToken > 0) {
+            IERC20(dappToken).safeApprove(uni, 0);
+            IERC20(dappToken).safeApprove(uni, _balanceDappToken);
+
+            address[] memory path = new address[](3);
+            path[0] = dappToken;
+            path[1] = weth;
+            path[2] = want;
+
+            Uni(uni).swapExactTokensForTokens(_balanceDappToken, uint256(0), path, address(this), now.add(1800));
+        }
+    }
+}
