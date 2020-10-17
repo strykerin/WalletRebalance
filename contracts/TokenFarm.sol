@@ -4,8 +4,14 @@ import "@chainlink/contracts/src/v0.6/interfaces/AggregatorV3Interface.sol";
 import "@chainlink/contracts/src/v0.6/ChainlinkClient.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
+
+import "../interfaces/uniswap/Uni.sol";
 
 contract TokenFarm is ChainlinkClient, Ownable {
+    using SafeERC20 for IERC20;
+    using Address for address;
+
     string public name = "Dapp Token Farm";
 
     address[] public stakers;
@@ -18,7 +24,8 @@ contract TokenFarm is ChainlinkClient, Ownable {
     address public dappToken;
     // at Rinkeby testnet
     address public constant uni = address(0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D);
-    // address public constant weth = address(0x2fcc4dba284dcf665091718e4d0dab53a416dfe7); // used for dapp <> weth <> yfi route
+    address public constant weth = address(0xc778417E063141139Fce010982780140Aa0cD5Ab); // used for dapp <> weth <> yfi route
+    address public constant want = address(0xc7AD46e0b8a400Bb3C915120d284AafbA8fc4735); // dai
 
     constructor(address _dappToken) public {
         dappToken = _dappToken;
@@ -138,20 +145,18 @@ contract TokenFarm is ChainlinkClient, Ownable {
         return uint256(price);
     }
 
-    // function swapDappTokenForDAI() public {
-    //     uint256 _balance = IERC20(dappToken).balanceOf(address(this));
-    //     if (_balance > 0) {
-    //         IERC20(dappToken).safeApprove(uni, 0);
-    //         IERC20(dappToken).safeApprove(uni, _balance);
+    function swapDappTokenForDAI() public {
+        uint256 _balanceDappToken = IERC20(dappToken).balanceOf(address(this));
+        if (_balanceDappToken > 0) {
+            IERC20(dappToken).safeApprove(uni, 0);
+            IERC20(dappToken).safeApprove(uni, _balanceDappToken);
 
-    //         address[] memory path = new address[](3);
-    //         path[0] = cream;
-    //         path[1] = weth;
-    //         path[2] = want;
+            address[] memory path = new address[](3);
+            path[0] = dappToken;
+            path[1] = weth;
+            path[2] = want;
 
-    //         Uni(uni).swapExactTokensForTokens(_cream, uint256(0), path, address(this), now.add(1800));
-    //     }
-    // }
+            Uni(uni).swapExactTokensForTokens(_balanceDappToken, uint256(0), path, address(this), now.add(1800));
+        }
+    }
 }
-
-//18446744073709555618
