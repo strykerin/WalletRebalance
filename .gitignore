@@ -1,5 +1,5 @@
 node_modules
 .secret
 bin
-build
+build\contracts
 secrets.json

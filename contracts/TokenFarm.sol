@@ -22,10 +22,9 @@ contract TokenFarm is ChainlinkClient, Ownable {
     address[] allowedTokens;
 
     address public dappToken;
-    // at Rinkeby testnet
     address public constant uni = address(0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D);
-    address public constant weth = address(0xc778417E063141139Fce010982780140Aa0cD5Ab); // used for dapp <> weth <> yfi route
-    address public constant want = address(0xc7AD46e0b8a400Bb3C915120d284AafbA8fc4735); // dai
+    address public constant weth = address(0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2); 
+    address public constant want = address(0x6B175474E89094C44Da98b954EedeAC495271d0F); // dai
 
     constructor(address _dappToken) public {
         dappToken = _dappToken;
